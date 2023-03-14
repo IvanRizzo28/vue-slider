@@ -1,0 +1,1 @@
+- Come visto sta mattina realizzo lo slider tramite le prorpietà di VueJs, nello specifico creo la struttura dati e con il v-for scorro tutti gli elementi e li stampo sul DOM. Con La funzione Mounted di VueJs Faccio partire il setInterval, quando il mouse è sopra l'immagine fermo il setInterval con la funzione clearInterval
