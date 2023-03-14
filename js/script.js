@@ -1,6 +1,6 @@
 const slides = [
 {
-    image: 'img/01.webp',
+        image: 'img/01.webp',
         title: 'Marvel\'s Spiderman Miles Morale',
         text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
     }, {
@@ -21,5 +21,40 @@ const slides = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
+const { createApp } =Vue;
 
-console.log(slides);
+createApp({
+  data(){
+    return{
+        active: 0,
+        slide: [...slides],
+        timer: null
+    }
+  },
+  methods: {
+    next(){
+        if (this.active < this.slide.length -1) this.active++;
+        else this.active=0;
+    },
+    prev(){
+        if (this.active > 0) this.active--;
+        else this.active=this.slide.length -1;
+    },
+    attiva(index){ //funzione che restituisce la classe active se l'index della thump è uguale alla variabvile active
+        if (index === this.active)   return "active";
+        return '';
+    },
+    visualizza(index,event){ //funzione che al click su una thump fa spuntare l'immagine relativa nello slider
+        this.active=index;
+    },
+    start(){ //start 
+        this.timer=setInterval(this.next,3000);
+    },
+    stop(){
+        clearInterval(this.timer);
+    }
+  },
+  mounted(){
+    this.start();
+  }
+}).mount("#app");

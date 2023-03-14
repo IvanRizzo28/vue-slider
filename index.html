@@ -12,27 +12,26 @@
 <body>
 
     <div id="app">
-
         <div class="container">
             <div class="slider-wrapper" tabindex="0">
 
                 <div class="item">
-                    <img src="img/01.webp" alt="Spiderman" />
+                    <img :src="slide[active].image" :alt="slide[active].title" @mouseover="stop" @mouseleave="start"/>
                     <div class="text">
-                        <h3>Spiderman</h3>
+                        <h3>{{slide[active].title}}</h3>
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit
-                            tempore aliquid deleniti aut
-                            veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum
-                            corporis.
+                            {{slide[active].text}}
                         </p>
                     </div>
                 </div>
 
                 <div class="thumbs">
-                    <div class="prev"></div>
-                    <div class="next"></div>
-                    <div class="thumb active">
+                    <div class="prev" @click="prev()"></div>
+                    <div class="next" @click="next()"></div>
+                    <div class="thumb" v-for="(img, index) in slide" :class="attiva(index)" @click="visualizza(index,$event)">
+                        <img :src="img.image" :alt="img.title" />
+                    </div>
+                   <!-- <div class="thumb active">
                         <img src="img/01.webp" alt="Svezia" />
                     </div>
                     <div class="thumb">
@@ -46,7 +45,7 @@
                     </div>
                     <div class="thumb">
                         <img src="img/05.webp" alt="Avengers" />
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
